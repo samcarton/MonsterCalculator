@@ -1,3 +1,14 @@
+# Monster Calculator React
+
+## Importing data from text file resources
+
+- under `scripts`, compile `table-to-json.ts` (`tsc table-to-json.ts`)
+- run `node table-to-json.js` on the output to convert the required chart/tables from text files to json files.
+- currrently only converts "resources/tables/cr chart.txt" to "monster-calculator-react/src/reference/cr-chart.json" 
+
+
+# Create React App Doco:
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
