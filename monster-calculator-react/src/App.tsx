@@ -84,7 +84,7 @@ const App: React.FC = () => {
     return (
     <div>
       <p>Monster Calculator</p>
-        <div>CR
+        <div style={{marginBottom:10}}>CR
             <select
                 value={leftCr}
                 onChange={handleLeftCrChange}>
@@ -96,12 +96,12 @@ const App: React.FC = () => {
                 {availableCrs.map((n) => (<option>{n}</option>))}
             </select>
         </div>
-        <div>PB <InputScaledOutput input={inputPb} scaledInput={scaledPb} onChange={(e) => handleInputChange(e,"PB")}/></div>
-        <div>AC <InputScaledOutput input={inputAc} scaledInput={scaledAc} onChange={(e) => handleInputChange(e,"AC")}/></div>
-        <div>HP <InputScaledOutput input={inputHp} scaledInput={scaledHp} onChange={(e) => handleInputChange(e,"HP")}/></div>
-        <div>AB <InputScaledOutput input={inputAb} scaledInput={scaledAb} onChange={(e) => handleInputChange(e,"AB")}/></div>
-        <div>DR <InputScaledOutput input={inputDr} scaledInput={scaledDr} onChange={(e) => handleInputChange(e,"DR")}/></div>
-        <div>DC <InputScaledOutput input={inputDc} scaledInput={scaledDc} onChange={(e) => handleInputChange(e,"DC")}/></div>
+        <div style={{marginBottom:10}}>PB <InputScaledOutput input={inputPb} scaledInput={scaledPb} onChange={(e) => handleInputChange(e,"PB")}/></div>
+        <div style={{marginBottom:10}}>AC <InputScaledOutput input={inputAc} scaledInput={scaledAc} onChange={(e) => handleInputChange(e,"AC")}/></div>
+        <div style={{marginBottom:10}}>HP <InputScaledOutput input={inputHp} scaledInput={scaledHp} onChange={(e) => handleInputChange(e,"HP")}/></div>
+        <div style={{marginBottom:10}}>AB <InputScaledOutput input={inputAb} scaledInput={scaledAb} onChange={(e) => handleInputChange(e,"AB")}/></div>
+        <div style={{marginBottom:10}}>DR <InputScaledOutput input={inputDr} scaledInput={scaledDr} onChange={(e) => handleInputChange(e,"DR")}/></div>
+        <div style={{marginBottom:10}}>DC <InputScaledOutput input={inputDc} scaledInput={scaledDc} onChange={(e) => handleInputChange(e,"DC")}/></div>
       <input value="Guess the CR" type="button"/>
     </div>
   );

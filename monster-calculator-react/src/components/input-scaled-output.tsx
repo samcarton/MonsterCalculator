@@ -17,7 +17,7 @@ export const InputScaledOutput : React.FC<InputScaledOutputProps> = (props) => {
     };
 
     return  <div style={{display:"inline"}}>
-                <input type="number" value={input} onChange={handlePbChange}/><input readOnly value={scaledInput}/>
+                <input type="number" value={input} onChange={handlePbChange} style={{width:60, textAlign:"right",}}/><input readOnly value={scaledInput} style={{width:60, textAlign:"right"}}/>
             </div>;
 };
 
