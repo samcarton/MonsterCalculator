@@ -1,7 +1,7 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
 import './App.css';
 import {InputScaledOutput} from "./components/input-scaled-output";
-import {CrChartMapping, ScaleAttribute, ScaleAttributeArgs} from "./services/monster-calculator-service";
+import {CrChartMapping, GuessCr, ScaleAttribute, ScaleAttributeArgs} from "./services/monster-calculator-service";
 
 const availableCrs = [0, 1 / 8, 1 / 4, 1 / 2, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
     14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
@@ -81,6 +81,19 @@ const App: React.FC = () => {
     useEffect(() => {setScaledDc(ScaleAttribute({attributeValue: inputDc, challengeRatingInput: leftCr, challengeRatingToScaleTo: rightCr, getValueFunction: getChartDcValue})); }, [inputDc, leftCr, rightCr]);
     //#endregion
 
+    const handleGuessCrClick = () => {
+        let guessedCr = GuessCr({
+            proficiencyBonus: inputPb,
+            armorClass: inputAc,
+            hitPoints: inputHp,
+            attackBonus: inputAb,
+            damagePerRound: inputDr,
+            saveDifficultyCheck: inputDc
+        });
+
+        setLeftCr(guessedCr);
+    };
+
     return (
     <div>
       <p>Monster Calculator</p>
@@ -101,7 +114,7 @@ const App: React.FC = () => {
         <div style={{marginBottom:10}}>AB <InputScaledOutput input={inputAb} scaledInput={scaledAb} onChange={(e) => handleInputChange(e,"AB")}/></div>
         <div style={{marginBottom:10}}>DR <InputScaledOutput input={inputDr} scaledInput={scaledDr} onChange={(e) => handleInputChange(e,"DR")}/></div>
         <div style={{marginBottom:10}}>DC <InputScaledOutput input={inputDc} scaledInput={scaledDc} onChange={(e) => handleInputChange(e,"DC")}/></div>
-      <input value="Guess the CR" type="button"/>
+        <button onClick={handleGuessCrClick}>Guess the CR</button>
     </div>
   );
 };
