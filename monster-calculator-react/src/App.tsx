@@ -84,8 +84,7 @@ const App: React.FC = () => {
     return (
     <div>
       <p>Monster Calculator</p>
-        <div style={{marginBottom:10}}>CR
-            <select
+        <div style={{marginBottom:10}}>CR <select
                 value={leftCr}
                 onChange={handleLeftCrChange}>
                 {availableCrs.map((n) => (<option>{n}</option>))}
