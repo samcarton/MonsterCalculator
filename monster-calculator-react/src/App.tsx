@@ -95,9 +95,12 @@ const App: React.FC = () => {
     };
 
     return (
-    <div>
-      <p>Monster Calculator</p>
-        <div style={{marginBottom:10}}>CR <select
+    <div style={{marginLeft:15}}>
+      <h3>Monster Calculator</h3>
+        <div style={{marginBottom:15}}>
+            <div>CR | Select your CR on the left, and the target CR to scale to on the right.</div>
+            <div>If you are unsure of your CR, enter your values and hit "Guess the CR".</div>
+            <select
                 value={leftCr}
                 onChange={handleLeftCrChange}>
                 {availableCrs.map((n) => (<option>{n}</option>))}
@@ -108,13 +111,16 @@ const App: React.FC = () => {
                 {availableCrs.map((n) => (<option>{n}</option>))}
             </select>
         </div>
-        <div style={{marginBottom:10}}>PB <InputScaledOutput input={inputPb} scaledInput={scaledPb} onChange={(e) => handleInputChange(e,"PB")}/></div>
-        <div style={{marginBottom:10}}>AC <InputScaledOutput input={inputAc} scaledInput={scaledAc} onChange={(e) => handleInputChange(e,"AC")}/></div>
-        <div style={{marginBottom:10}}>HP <InputScaledOutput input={inputHp} scaledInput={scaledHp} onChange={(e) => handleInputChange(e,"HP")}/></div>
-        <div style={{marginBottom:10}}>AB <InputScaledOutput input={inputAb} scaledInput={scaledAb} onChange={(e) => handleInputChange(e,"AB")}/></div>
-        <div style={{marginBottom:10}}>DR <InputScaledOutput input={inputDr} scaledInput={scaledDr} onChange={(e) => handleInputChange(e,"DR")}/></div>
-        <div style={{marginBottom:10}}>DC <InputScaledOutput input={inputDc} scaledInput={scaledDc} onChange={(e) => handleInputChange(e,"DC")}/></div>
-        <button onClick={handleGuessCrClick}>Guess the CR</button>
+        <div style={{marginBottom:15}}><div>PB | Proficiency Bonus (easiest way to determine this is to take Attack Bonus - Strength Modifier)</div> <InputScaledOutput input={inputPb} scaledInput={scaledPb} onChange={(e) => handleInputChange(e,"PB")}/></div>
+        <div style={{marginBottom:15}}><div>AC | Armor Class</div> <InputScaledOutput input={inputAc} scaledInput={scaledAc} onChange={(e) => handleInputChange(e,"AC")}/></div>
+        <div style={{marginBottom:15}}><div>HP | Hit Points</div> <InputScaledOutput input={inputHp} scaledInput={scaledHp} onChange={(e) => handleInputChange(e,"HP")}/></div>
+        <div style={{marginBottom:15}}><div>AB | Attack Bonus</div> <InputScaledOutput input={inputAb} scaledInput={scaledAb} onChange={(e) => handleInputChange(e,"AB")}/></div>
+        <div style={{marginBottom:15}}><div>DR | Average Damage per Round</div> <InputScaledOutput input={inputDr} scaledInput={scaledDr} onChange={(e) => handleInputChange(e,"DR")}/></div>
+        <div style={{marginBottom:15}}><div>DC | Save DC of any abilities or Spells they have</div> <InputScaledOutput input={inputDc} scaledInput={scaledDc} onChange={(e) => handleInputChange(e,"DC")}/></div>
+
+        <div style={{marginTop:15}}>
+            <div>Guess the CR based on the input attribute values</div>
+            <button  onClick={handleGuessCrClick}>Guess the CR</button></div>
     </div>
   );
 };
