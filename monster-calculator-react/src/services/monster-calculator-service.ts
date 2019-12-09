@@ -1,8 +1,20 @@
-import * as crChart from '../reference/cr-chart.json';
+import crChart from '../reference/cr-chart.json';
+
+const crChartMappings : CrChartMapping[] = crChart;
 
 // interface for the "get value" callback function
 export interface GetValueFunction {
-    (mapping: any): number
+    (mapping: CrChartMapping): number
+}
+
+export interface CrChartMapping{
+    challengeRating:number,
+    proficiencyBonus:number,
+    armorClass:number,
+    hitPoints:number,
+    attackBonus:number,
+    damagePerRound:number,
+    saveDifficultyCheck:number
 }
 
 export interface ScaleAttributeArgs {
@@ -14,15 +26,29 @@ export interface ScaleAttributeArgs {
 
 // MonsterCalc.java -> updateFields
 // Scale the input attribute based on the given CR ratings.
-export function scaleAttribute(arg : ScaleAttributeArgs) {
-    let inputCrMapping = {};// TODO lookup in cr-chart by input CR
+export function ScaleAttribute(arg : ScaleAttributeArgs) : number {
+
+    let inputCrMapping = crChartMappings.find(mapping => mapping.challengeRating === arg.challengeRatingInput);
+    if(!inputCrMapping)
+    {
+        console.log("Input CR mapping not found");
+        return -1;
+    }
+
     let inputCrMaxAttributeValue = arg.getValueFunction(inputCrMapping);
 
-    let targetCrMapping = {}; // TODO lookup in cr-chart by target CR
-    let targetCrMaxAttributeValue = arg.getValueFunction(inputCrMapping);
+    let targetCrMapping = crChartMappings.find(mapping => mapping.challengeRating === arg.challengeRatingToScaleTo);
+
+    if(!targetCrMapping)
+    {
+        console.log("Target CR mapping not found");
+        return -1;
+    }
+
+    let targetCrMaxAttributeValue = arg.getValueFunction(targetCrMapping);
 
     let scaledAttribute = arg.attributeValue/inputCrMaxAttributeValue * targetCrMaxAttributeValue;
-    return scaledAttribute;
+    return Math.round(scaledAttribute);
 }
 
 // MonsterCalc.java -> guessCR

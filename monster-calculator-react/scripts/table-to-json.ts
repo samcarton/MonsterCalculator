@@ -10,18 +10,21 @@ let lines = file.split("\r\n");
 
 let challengeRatingChartObjects = lines.map((line)=> {
     let splitLine = line.split(",");
-    return {challengeRating: splitLine[0],
-        proficiencyBonus: splitLine[1],
-        armorClass: splitLine[2],
-        hitPoints: splitLine[3],
-        attackBonus: splitLine[4],
-        damagePerRound: splitLine[5],
-        saveDifficultyCheck: splitLine[6]
+    return {challengeRating: parseFloat(splitLine[0]),
+        proficiencyBonus: parseInt(splitLine[1]),
+        armorClass: parseInt(splitLine[2]),
+        hitPoints: parseInt(splitLine[3]),
+        attackBonus: parseInt(splitLine[4]),
+        damagePerRound: parseInt(splitLine[5]),
+        saveDifficultyCheck: parseInt(splitLine[6])
     }
 });
 
 let jsonString = JSON.stringify(challengeRatingChartObjects,null, 2);
 console.log(`saving to ${outFile}`, jsonString);
 
-fs.mkdir(outPath,null,(err) => {if (err) throw err;});
+try {
+    fs.mkdir(outPath,null,(err) => {});
+}
+catch{}
 fs.writeFileSync(outFile, jsonString);
